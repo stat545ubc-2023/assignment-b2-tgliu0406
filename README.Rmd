@@ -1,0 +1,60 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# countMissing
+
+<!-- badges: start -->
+<!-- badges: end -->
+
+Given a data frame `data` and a column `group`, `count_all_missing_by_group()` creates a new data frame with one row per level of `group`. The first column of the output data frame contains the levels of `group`, and the rest of the columns contain the number of missing values for all columns in `data` except `group`.
+
+## Installation
+
+You can install the development version of countMissing from [GitHub](https://github.com/) with:
+
+``` {r}
+# install.packages("devtools")
+devtools::install_github("stat545ubc-2023/countMissing")
+```
+
+## Example
+
+This is a basic example which shows you how to solve a common problem:
+
+```{r example}
+library(countMissing)
+## countMissing relies on tidyverse
+library(tidyverse)
+## load the dataset for the following demo
+library(palmerpenguins)
+```
+
+This example computes the number of missing values in the `airquality` dataset grouped by the `cyl` column. 
+
+```{r} 
+count_all_missing_by_group(airquality, Month)
+```
+
+This example has the same output as the last example, but shows off an alternative way of invoking the `count_all_missing_by_group()`: piping the dataset into the function. 
+
+```{r} 
+airquality |> count_all_missing_by_group(Month) 
+```
+
+The optional `.groups` argument allows us to keep the output grouped by the grouping column. See example below; notice how the output is a grouped tibble, rather than the ungrouped tibble output of the earlier examples. 
+
+```{r} 
+count_all_missing_by_group(airquality, Month, .groups = "keep")
+```
