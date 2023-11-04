@@ -1,8 +1,3 @@
-library(tidyverse)
-library(roxygen2)
-library(testthat)
-library(palmerpenguins)
-
 #' Count missing values for all columns by group
 #' 
 #' @description Given a data frame `data` and a 
@@ -31,6 +26,11 @@ library(palmerpenguins)
 #' each level of `group` for all columns in
 #' `data` except `group`.     
 #' 
+#' @examples
+#' count_all_missing_by_group(airquality, Month)
+#' airquality |> count_all_missing_by_group(Month) 
+#' count_all_missing_by_group(airquality, Month, .groups = "keep")
+#' 
 #' @export 
 count_all_missing_by_group <- function(data, group_col, .groups = "drop") { 
   
@@ -47,8 +47,3 @@ count_all_missing_by_group <- function(data, group_col, .groups = "drop") {
     summarize(across(everything(), ~sum(is.na(.x))), 
               .groups = .groups)
 }
-
-#' @examples
-count_all_missing_by_group(airquality, Month)
-airquality |> count_all_missing_by_group(Month) 
-count_all_missing_by_group(airquality, Month, .groups = "keep")
