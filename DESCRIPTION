@@ -1,6 +1,6 @@
 Package: countMissing
 Title: Count All Missing By Group (One Line, Title Case)
-Version: 0.0.0.9000
+Version: 0.1.0
 Authors@R: 
     person("Tiange", "Liu", , "tiange.liu@stat.ubc.ca", role = c("aut", "cre"),
            comment = c(ORCID = "YOUR-ORCID-ID"))
@@ -16,5 +16,6 @@ RoxygenNote: 7.2.3
 Imports: 
   dplyr
 Suggests:
-    testthat (>= 3.0.0)
+  palmerpenguins,
+  testthat (>= 3.0.0)
 Config/testthat/edition: 3
